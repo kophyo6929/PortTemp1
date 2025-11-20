@@ -23,7 +23,7 @@ export interface BeamPath {
       duration?: number;
       repeat?: number;
       repeatType?: "loop" | "reverse" | "mirror";
-      ease?: string;
+      ease?: any;
       repeatDelay?: number;
       delay?: number;
     };
@@ -65,7 +65,7 @@ export const PulseBeams = ({
   return (
     <div
       className={cn(
-        "w-full h-screen relative flex items-center justify-center antialiased overflow-hidden",
+        "w-full h-full min-h-[400px] relative flex items-center justify-center antialiased overflow-hidden",
         className
       )}
     >
