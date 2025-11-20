@@ -72,11 +72,12 @@ export const Sidebar = ({
   );
 };
 
-export const SidebarBody = (props: React.ComponentProps<typeof motion.div> & { children?: React.ReactNode }) => {
+export const SidebarBody = (props: React.ComponentProps<typeof motion.div> & { children?: React.ReactNode; onBack?: () => void }) => {
+  const { onBack, ...rest } = props;
   return (
     <>
-      <DesktopSidebar {...props} />
-      <MobileSidebar {...(props as unknown as React.ComponentProps<"div">)} />
+      <DesktopSidebar {...rest} />
+      <MobileSidebar {...(rest as unknown as React.ComponentProps<"div">)} onBack={onBack} />
     </>
   );
 };
@@ -170,8 +171,9 @@ export const DesktopSidebar = ({
 export const MobileSidebar = ({
   className,
   children,
+  onBack,
   ...props
-}: React.ComponentProps<"div">) => {
+}: React.ComponentProps<"div"> & { onBack?: () => void }) => {
   const { open, setOpen } = useSidebar();
   return (
     <>
@@ -218,6 +220,7 @@ export const MobileSidebar = ({
                   onClick={(e) => {
                     e.stopPropagation();
                     setOpen(false);
+                    if (onBack) onBack();
                   }}
                   type="button"
                 >

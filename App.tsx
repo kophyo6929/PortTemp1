@@ -245,7 +245,10 @@ export default function App() {
       {/* Sidebar Layout Overlay */}
       <div className="relative z-10 w-full h-full flex flex-col md:flex-row bg-transparent overflow-hidden">
         <Sidebar open={open} setOpen={setOpen}>
-          <SidebarBody className="justify-between gap-10 bg-transparent border-r border-white/5">
+          <SidebarBody 
+            className="justify-between gap-10 bg-transparent border-r border-white/5"
+            onBack={() => setActiveTab("landing")}
+          >
             <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
               {open ? <Logo /> : <LogoIcon />}
               <div className="mt-8 flex flex-col gap-2">
